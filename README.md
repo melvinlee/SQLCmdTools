@@ -1,6 +1,6 @@
 # SQLCmdTools
 Powershell script to provision sqlcmd.exe
 
-##Import Module
+## Import Module
 
-Import-Module .\Invoke-SqlCmdScript.psm1
+Import-Module .\SqlCmdTools.psm1
