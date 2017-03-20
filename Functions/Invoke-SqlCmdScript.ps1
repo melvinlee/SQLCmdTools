@@ -61,7 +61,7 @@ function Invoke-SqlCmdScript
                         foreach ($sqlFile in $files)
                         {         
 
-                            $outputArray += Perform-SqlCmd -File $sqlFile.FullName
+                            $outputArray += Use-SqlCmd -File $sqlFile.FullName -Server $Server -Database $Database
 
                         }
                         
@@ -73,7 +73,7 @@ function Invoke-SqlCmdScript
                     
                 }else{
 
-                    $outputArray += Perform-SqlCmd -File $file
+                    $outputArray += Use-SqlCmd -File $file -Server $Server -Database $Database
                        
                 }
                 

@@ -3,7 +3,15 @@ function Use-SqlCmd
     Param(
   		[Parameter(Mandatory)]
 		[ValidateNotNullOrEmpty()]
-		[string[]]$File
+		[string[]]$File,
+
+        [Parameter(Mandatory)]
+		[ValidateNotNullOrEmpty()]
+		[string]$Server,
+
+		[Parameter(Mandatory)]
+		[ValidateNotNullOrEmpty()]
+		[string]$Database
     )
 
     $cmd = "sqlcmd -S $Server -d $Database -I -i ""$($file)"""
