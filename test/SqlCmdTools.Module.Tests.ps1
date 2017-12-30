@@ -1,5 +1,6 @@
 ﻿$currentPath = Split-Path -Parent $MyInvocation.MyCommand.Path
-$functionPath = "$currentPath\Functions\" 
+$rootPath = $currentPath + "\.."
+$functionPath = "$rootPath\Functions\" 
 
 $module = 'SqlCmdTools'
 
@@ -7,16 +8,16 @@ Describe "$module Module Tests"  {
 
   Context 'Module Setup' {
     It "has the root module $module.psm1" {
-      "$currentPath\$module.psm1" | Should Exist
+      "$rootPath\$module.psm1" | Should Exist
     }
 
     It "has the a manifest file of $module.psm1" {
-      "$currentPath\$module.psd1" | Should Exist
-      "$currentPath\$module.psd1" | Should FileContentMatch "$module.psm1"
+      "$rootPath\$module.psd1" | Should Exist
+      "$rootPath\$module.psd1" | Should FileContentMatch "$module.psm1"
     }
 
     It "$module is valid PowerShell code" {
-      $psFile = Get-Content -Path "$currentPath\$module.psm1" `
+      $psFile = Get-Content -Path "$rootPath\$module.psm1" `
                             -ErrorAction Stop
       $errors = $null
       $null = [System.Management.Automation.PSParser]::Tokenize($psFile, [ref]$errors)
@@ -33,7 +34,7 @@ Describe "$module Module Tests"  {
     Context "Test Function $function" {
       
       It "$function.ps1 should exist" {
-        "$currentPath\Functions\$function.ps1" | Should Exist
+        "$functionPath\$function.ps1" | Should Exist
       }
     
       It "$function.ps1 should be an advanced function" {
