@@ -51,6 +51,8 @@ function Invoke-SqlCmdScript
                 $pattern = "*.sql"
                 $outputLog  = "$Database.log"
                 
+                Write-Verbose "Outputlog: $outputLog"
+
                 If($PSCmdlet.ParameterSetName -eq "ByPath")
                 {
                     
